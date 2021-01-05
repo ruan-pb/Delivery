@@ -46,5 +46,11 @@ public class OrderService {
 		order = orderBD.save(order);
 		return new OrderDTO(order);
 	}
-	
+	@Transactional
+	public OrderDTO setDelivered(Long id){
+		Order order = orderBD.getOne(id);
+		order.setStatus(OrderStatus.DELIVERED);
+		order = orderBD.save(order);
+		return new OrderDTO(order);
+	}
 }
